@@ -14,6 +14,7 @@ document.getElementById("deposit-btn").addEventListener("click", function () {
   const previousBalance = parseFloat(balanceElementTextString);
   const newBalanceTotal = newDeposit + previousBalance;
   balanceElementText.innerText = newBalanceTotal;
+
   //
   depositInputField.value = "";
 });
