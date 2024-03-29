@@ -3,6 +3,13 @@ document.getElementById("withdraw-btn").addEventListener("click", function () {
   const withdrawField = document.getElementById("withdraw-field");
   const withdrawFieldString = withdrawField.value;
   const previousWithdrawField = parseFloat(withdrawFieldString);
+  //
+  withdrawField.value = "";
+
+  if (isNaN(previousWithdrawField)) {
+    alert("please provide correct amount number ");
+    return;
+  }
 
   //   withdraw balance
   const withdrawBalance = document.getElementById("withdraw-balance");
@@ -14,15 +21,14 @@ document.getElementById("withdraw-btn").addEventListener("click", function () {
   const depositBalanceString = depositBalance.innerText;
   const previousDepositBalance = parseFloat(depositBalanceString);
 
-  if (previousDepositBalance > previousWithdrawField) {
-    const newWithdrawBalance = previousWithdrawBalance + previousWithdrawField;
-
-    withdrawBalance.innerText = newWithdrawBalance;
-    const newDepositBalance = previousDepositBalance - previousWithdrawField;
-    depositBalance.innerText = newDepositBalance;
-  } else {
+  //
+  if (previousDepositBalance < previousWithdrawField) {
     alert("you do not have sufficient balance");
+    return;
   }
+  const newWithdrawBalance = previousWithdrawBalance + previousWithdrawField;
 
-  withdrawField.value = "";
+  withdrawBalance.innerText = newWithdrawBalance;
+  const newDepositBalance = previousDepositBalance - previousWithdrawField;
+  depositBalance.innerText = newDepositBalance;
 });
